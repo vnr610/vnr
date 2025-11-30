@@ -15,21 +15,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- Google Fonts with font-display swap for faster rendering -->
+    <!-- Google Fonts -->
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&display=swap"
         rel="stylesheet">
 
-    <!-- Tailwind CSS (via CDN) - Must load before config -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Anime.js - Defer loading -->
+    <!-- Anime.js (Deferred) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
 
-    <!-- Lucide Icons - Defer loading -->
+    <!-- Lucide Icons (Deferred) -->
     <script src="https://unpkg.com/lucide@latest" defer></script>
 
-    <!-- INLINED SCRIPT: Tailwind Config -->
+    <!-- EmailJS SDK (Deferred for faster page load) -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+
+    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -57,7 +60,6 @@
         }
     </script>
 
-    <!-- INLINED STYLES: Custom CSS -->
     <style>
         /* Custom Scrollbar */
         .custom-scrollbar::-webkit-scrollbar {
@@ -77,7 +79,7 @@
             background-color: #475569;
         }
 
-        /* Animation Helpers - Optimized with will-change */
+        /* Animation Helpers */
         .reveal-element {
             opacity: 0;
             transform: translateY(20px);
@@ -90,14 +92,12 @@
             transform: translateY(0);
         }
         
-        /* GPU acceleration for animations */
         .blog-card,
         .hero-section,
         .cta-section {
             will-change: transform;
         }
         
-        /* Reduce repaints */
         nav {
             contain: layout style paint;
         }
@@ -110,6 +110,16 @@
             overflow-x: auto;
             font-family: 'Courier New', Courier, monospace;
         }
+
+        /* Fade in for tabs */
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 
@@ -121,7 +131,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer hover:scale-105 transition-transform" onclick="window.scrollTo(0,0)">
                     <i data-lucide="code-2" class="w-8 h-8 text-white dark:text-blue-400"></i>
                     <h1 class="font-quantico font-bold text-2xl tracking-wide">Grind With MT</h1>
                 </div>
@@ -201,45 +211,25 @@
             </div>
         </div>
 
-        <!-- Blog/Grid Section -->
+        <!-- Topics Grid Section -->
         <div class="mb-8">
             <!-- Header + Show All link -->
             <div class="flex justify-between items-end mb-6 reveal-element section-title">
                 <h2
                     class="font-quantico text-2xl font-bold text-brand-blue dark:text-blue-400 border-l-4 border-brand-blue dark:border-blue-400 pl-3">
-                    JavaScript</h2>
-                <!-- Added ID for Show All click event -->
-                <a href="#" id="show-all-js-btn"
-                    class="text-sm font-bold text-brand-blue dark:text-blue-400 hover:text-brand-dark dark:hover:text-blue-300 transition-colors flex items-center gap-1 group">
+                    Topics</h2>
+                <!-- Updated: Toggle Button -->
+                <button id="toggle-topics-btn"
+                    class="text-sm font-bold text-brand-blue dark:text-blue-400 hover:text-brand-dark dark:hover:text-blue-300 transition-colors flex items-center gap-1 group focus:outline-none"
+                    data-expanded="false">
                     Show All <i data-lucide="arrow-right"
                         class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                </a>
+                </button>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Card 1: Strings -->
-                <div class="group blog-card reveal-element h-full">
-                    <div
-                        class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 dark:border-slate-700 flex flex-col transform hover:-translate-y-1">
-                        <div class="h-2 bg-green-500"></div>
-                        <div class="p-6 flex-grow flex flex-col items-center text-center">
-                            <div
-                                class="w-16 h-16 bg-green-50 dark:bg-green-900/20 rounded-full flex items-center justify-center mb-4 text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">
-                                <i data-lucide="align-left" class="w-8 h-8"></i>
-                            </div>
-                            <h3 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">Strings</h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">Mastering string
-                                manipulation, regex patterns, and parsing data effectively.</p>
-                            <button onclick="openJsModal('tab-strings')"
-                                class="text-brand-blue dark:text-blue-400 font-bold text-sm uppercase tracking-wider hover:text-brand-dark dark:hover:text-blue-300 transition-colors flex items-center gap-1 group-hover:gap-2 cursor-pointer focus:outline-none">
-                                Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2: Conditions -->
+                <!-- Card 1: JavaScript -->
                 <div class="group blog-card reveal-element h-full">
                     <div
                         class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 dark:border-slate-700 flex flex-col transform hover:-translate-y-1">
@@ -247,13 +237,11 @@
                         <div class="p-6 flex-grow flex flex-col items-center text-center">
                             <div
                                 class="w-16 h-16 bg-yellow-50 dark:bg-yellow-900/20 rounded-full flex items-center justify-center mb-4 text-yellow-600 dark:text-yellow-400 group-hover:scale-110 transition-transform duration-300">
-                                <i data-lucide="git-branch" class="w-8 h-8"></i>
+                                <i data-lucide="file-json" class="w-8 h-8"></i>
                             </div>
-                            <h2 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">Conditions
-                            </h2>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">Control logic flow
-                                with if-else statements and switch cases.</p>
-                            <button onclick="openJsModal('tab-conditions')"
+                            <h3 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">JavaScript</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">The language of the web. Essential for modern frontend and backend development.</p>
+                            <button onclick="openJsModal('tab-javascript')"
                                 class="text-brand-blue dark:text-blue-400 font-bold text-sm uppercase tracking-wider hover:text-brand-dark dark:hover:text-blue-300 transition-colors flex items-center gap-1 group-hover:gap-2 cursor-pointer focus:outline-none">
                                 Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </button>
@@ -261,21 +249,20 @@
                     </div>
                 </div>
 
-                <!-- Card 3: Loops -->
+                <!-- Card 2: Python -->
                 <div class="group blog-card reveal-element h-full">
                     <div
                         class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 dark:border-slate-700 flex flex-col transform hover:-translate-y-1">
-                        <div class="h-2 bg-purple-500"></div>
+                        <div class="h-2 bg-blue-500"></div>
                         <div class="p-6 flex-grow flex flex-col items-center text-center">
                             <div
-                                class="w-16 h-16 bg-purple-50 dark:bg-purple-900/20 rounded-full flex items-center justify-center mb-4 text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-300">
-                                <i data-lucide="repeat" class="w-8 h-8"></i>
+                                class="w-16 h-16 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center mb-4 text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="file-code" class="w-8 h-8"></i>
                             </div>
-                            <h3 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">Loops
-                            </h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">Automate repetitive
-                                tasks using for, while, and do-while iteration structures.</p>
-                            <button onclick="openJsModal('tab-loops')"
+                            <h2 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">Python
+                            </h2>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">Versatile and powerful. The king of Data Science, AI, and backend scripting.</p>
+                            <button onclick="openJsModal('tab-python')"
                                 class="text-brand-blue dark:text-blue-400 font-bold text-sm uppercase tracking-wider hover:text-brand-dark dark:hover:text-blue-300 transition-colors flex items-center gap-1 group-hover:gap-2 cursor-pointer focus:outline-none">
                                 Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </button>
@@ -283,22 +270,83 @@
                     </div>
                 </div>
 
-                <!-- HIDDEN CARD: Functions (Revealed on 'Show All') -->
-                <div id="more-js-card" class="group blog-card hidden h-full">
+                <!-- Card 3: HTML -->
+                <div class="group blog-card reveal-element h-full">
                     <div
                         class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 dark:border-slate-700 flex flex-col transform hover:-translate-y-1">
-                        <!-- Red color for Functions -->
-                        <div class="h-2 bg-red-600"></div>
+                        <div class="h-2 bg-orange-500"></div>
                         <div class="p-6 flex-grow flex flex-col items-center text-center">
                             <div
-                                class="w-16 h-16 bg-red-50 dark:bg-red-900/20 rounded-full flex items-center justify-center mb-4 text-red-600 dark:text-red-400 group-hover:scale-110 transition-transform duration-300">
-                                <i data-lucide="braces" class="w-8 h-8"></i>
+                                class="w-16 h-16 bg-orange-50 dark:bg-orange-900/20 rounded-full flex items-center justify-center mb-4 text-orange-600 dark:text-orange-400 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="layout" class="w-8 h-8"></i>
                             </div>
-                            <h3 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">Functions
+                            <h3 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">HTML5
                             </h3>
-                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">Reusable blocks of code,
-                                arrow functions, and scope management.</p>
-                            <button onclick="openJsModal('tab-functions')"
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">The structure of the web. Semantic markup, accessibility, and the DOM.</p>
+                            <button onclick="openJsModal('tab-html')"
+                                class="text-brand-blue dark:text-blue-400 font-bold text-sm uppercase tracking-wider hover:text-brand-dark dark:hover:text-blue-300 transition-colors flex items-center gap-1 group-hover:gap-2 cursor-pointer focus:outline-none">
+                                Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HIDDEN CARD 1: CSS -->
+                <div class="group blog-card hidden topic-hidden h-full">
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 dark:border-slate-700 flex flex-col transform hover:-translate-y-1">
+                        <div class="h-2 bg-indigo-500"></div>
+                        <div class="p-6 flex-grow flex flex-col items-center text-center">
+                            <div
+                                class="w-16 h-16 bg-indigo-50 dark:bg-indigo-900/20 rounded-full flex items-center justify-center mb-4 text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="palette" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">CSS3
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">Styling the web. Flexbox, Grid, animations, and responsive design.</p>
+                            <button onclick="openJsModal('tab-css')"
+                                class="text-brand-blue dark:text-blue-400 font-bold text-sm uppercase tracking-wider hover:text-brand-dark dark:hover:text-blue-300 transition-colors flex items-center gap-1 group-hover:gap-2 cursor-pointer focus:outline-none">
+                                Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HIDDEN CARD 2: C++ -->
+                <div class="group blog-card hidden topic-hidden h-full">
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 dark:border-slate-700 flex flex-col transform hover:-translate-y-1">
+                        <div class="h-2 bg-blue-700"></div>
+                        <div class="p-6 flex-grow flex flex-col items-center text-center">
+                            <div
+                                class="w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mb-4 text-blue-800 dark:text-blue-400 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="cpu" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">C++
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">High performance. Game development, systems programming, and efficiency.</p>
+                            <button onclick="openJsModal('tab-cpp')"
+                                class="text-brand-blue dark:text-blue-400 font-bold text-sm uppercase tracking-wider hover:text-brand-dark dark:hover:text-blue-300 transition-colors flex items-center gap-1 group-hover:gap-2 cursor-pointer focus:outline-none">
+                                Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HIDDEN CARD 3: AWS -->
+                <div class="group blog-card hidden topic-hidden h-full">
+                    <div
+                        class="bg-white dark:bg-dark-card rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 h-full border border-gray-100 dark:border-slate-700 flex flex-col transform hover:-translate-y-1">
+                        <div class="h-2 bg-orange-600"></div>
+                        <div class="p-6 flex-grow flex flex-col items-center text-center">
+                            <div
+                                class="w-16 h-16 bg-orange-100 dark:bg-orange-900/20 rounded-full flex items-center justify-center mb-4 text-orange-700 dark:text-orange-500 group-hover:scale-110 transition-transform duration-300">
+                                <i data-lucide="cloud" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-quantico text-2xl font-bold text-gray-800 dark:text-white mb-2">AWS
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-sm flex-grow">Cloud infrastructure. EC2, S3, Lambda, and scalable architecture.</p>
+                            <button onclick="openJsModal('tab-aws')"
                                 class="text-brand-blue dark:text-blue-400 font-bold text-sm uppercase tracking-wider hover:text-brand-dark dark:hover:text-blue-300 transition-colors flex items-center gap-1 group-hover:gap-2 cursor-pointer focus:outline-none">
                                 Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i>
                             </button>
@@ -317,15 +365,20 @@
                 <p class="font-nunito text-blue-200 dark:text-slate-300 mb-8 max-w-xl mx-auto">Stay updated with the
                     latest tutorials and coding challenges. Let's learn together.</p>
 
-                <!-- UPDATED: Email Input with Validation -->
-                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                    <!-- Added id="newsletter-email" and border styles -->
-                    <input type="email" id="newsletter-email" placeholder="Enter your email address"
-                        class="px-5 py-3 rounded-full text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-0 border-2 border-transparent w-full sm:w-80 shadow-inner transition-colors duration-200">
-                    <button
-                        class="bg-white text-brand-dark dark:text-slate-900 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition-colors shadow-lg w-full sm:w-auto">Subscribe</button>
+                <!-- UPDATED: Newsletter Form with EmailJS -->
+                <form id="newsletter-form" class="flex flex-col sm:flex-row justify-center items-center gap-4 w-full">
+                    <!-- Note: name="user_email" matches standard EmailJS templates -->
+                    <input type="email" name="user_email" id="newsletter-email" placeholder="Enter your email address" required
+                        class="px-5 py-3 rounded-full text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400 border-2 border-transparent w-full sm:w-80 shadow-inner transition-colors duration-200">
+                    <button type="submit" id="newsletter-btn"
+                        class="bg-white text-brand-dark dark:text-slate-900 font-bold py-3 px-8 rounded-full hover:bg-blue-50 transition-colors shadow-lg w-full sm:w-auto flex items-center justify-center gap-2">
+                        <span>Subscribe</span>
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                    </button>
+                </form>
+                <!-- Status Message -->
+                <p id="newsletter-message" class="text-sm mt-3 h-5 font-bold transition-opacity duration-300 opacity-0"></p>
                 
-                </div>
             </div>
             <!-- Decorative circle -->
             <div
@@ -358,7 +411,7 @@
     </footer>
 
 
-    <!-- JAVASCRIPT MODAL -->
+    <!-- TECH MODAL -->
     <div id="js-modal" class="fixed inset-0 z-[60] hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog"
         aria-modal="true">
         <!-- Backdrop -->
@@ -374,9 +427,9 @@
                 <div
                     class="bg-gray-50 dark:bg-slate-900 px-4 py-3 sm:px-6 flex justify-between items-center border-b border-gray-200 dark:border-slate-700">
                     <div class="flex items-center gap-2">
-                        <i data-lucide="javascript" class="text-yellow-500 w-6 h-6"></i>
+                        <i data-lucide="layers" class="text-brand-blue dark:text-blue-400 w-6 h-6"></i>
                         <h3 class="text-lg font-bold leading-6 text-gray-900 dark:text-white font-quantico"
-                            id="modal-title">JavaScript Fundamentals</h3>
+                            id="modal-title">Tech Stack Details</h3>
                     </div>
                     <button type="button"
                         class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 focus:outline-none"
@@ -392,27 +445,39 @@
                     <div
                         class="w-full md:w-1/4 bg-gray-50 dark:bg-slate-900 border-r border-gray-200 dark:border-slate-700 overflow-y-auto custom-scrollbar">
                         <nav class="flex flex-col p-2 space-y-1" aria-label="Tabs">
-                            <button onclick="switchTab('tab-strings')" id="btn-tab-strings"
+                            <button onclick="switchTab('tab-javascript')" id="btn-tab-javascript"
                                 class="tab-btn w-full text-left px-4 py-3 rounded-md text-sm font-medium bg-brand-blue text-white shadow-sm flex items-center justify-between group">
-                                <span>Strings</span>
+                                <span>JavaScript</span>
                                 <i data-lucide="chevron-right"
                                     class="w-4 h-4 opacity-100 group-hover:translate-x-1 transition-transform"></i>
                             </button>
-                            <button onclick="switchTab('tab-conditions')" id="btn-tab-conditions"
+                            <button onclick="switchTab('tab-python')" id="btn-tab-python"
                                 class="tab-btn w-full text-left px-4 py-3 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-gray-900 dark:hover:text-white flex items-center justify-between group">
-                                <span>Conditions</span>
+                                <span>Python</span>
                                 <i data-lucide="chevron-right"
                                     class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
                             </button>
-                            <button onclick="switchTab('tab-loops')" id="btn-tab-loops"
+                            <button onclick="switchTab('tab-html')" id="btn-tab-html"
                                 class="tab-btn w-full text-left px-4 py-3 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-gray-900 dark:hover:text-white flex items-center justify-between group">
-                                <span>Loops</span>
+                                <span>HTML5</span>
                                 <i data-lucide="chevron-right"
                                     class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
                             </button>
-                            <button onclick="switchTab('tab-functions')" id="btn-tab-functions"
+                            <button onclick="switchTab('tab-css')" id="btn-tab-css"
                                 class="tab-btn w-full text-left px-4 py-3 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-gray-900 dark:hover:text-white flex items-center justify-between group">
-                                <span>Functions</span>
+                                <span>CSS3</span>
+                                <i data-lucide="chevron-right"
+                                    class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            </button>
+                             <button onclick="switchTab('tab-cpp')" id="btn-tab-cpp"
+                                class="tab-btn w-full text-left px-4 py-3 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-gray-900 dark:hover:text-white flex items-center justify-between group">
+                                <span>C++</span>
+                                <i data-lucide="chevron-right"
+                                    class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
+                            </button>
+                             <button onclick="switchTab('tab-aws')" id="btn-tab-aws"
+                                class="tab-btn w-full text-left px-4 py-3 rounded-md text-sm font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 hover:text-gray-900 dark:hover:text-white flex items-center justify-between group">
+                                <span>AWS</span>
                                 <i data-lucide="chevron-right"
                                     class="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"></i>
                             </button>
@@ -423,120 +488,86 @@
                     <div
                         class="w-full md:w-3/4 p-6 overflow-y-auto custom-scrollbar bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-200">
 
-                        <!-- String Tab Content -->
-                        <div id="tab-strings" class="tab-content block animate-fade-in">
-                            <h4 class="text-xl font-bold mb-4 font-quantico text-brand-blue dark:text-blue-400">Working
-                                with Strings</h4>
-                            <p class="mb-4 text-sm leading-relaxed">Strings are used for storing and manipulating text.
-                                JavaScript provides many helpful methods to handle string data efficiently.</p>
-
-                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Common Methods
-                            </h5>
+                        <!-- JavaScript Tab -->
+                        <div id="tab-javascript" class="tab-content block animate-fade-in">
+                            <h4 class="text-xl font-bold mb-4 font-quantico text-yellow-600 dark:text-yellow-400">JavaScript</h4>
+                            <p class="mb-4 text-sm leading-relaxed">The engine of the modern web. From simple DOM manipulation to complex backend logic with Node.js, JS is everywhere.</p>
+                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Key Concepts</h5>
                             <ul class="list-disc list-inside space-y-2 mb-6 text-sm ml-2">
-                                <li><strong>.length</strong>: Returns the length of the string.</li>
-                                <li><strong>.toUpperCase()</strong>: Converts string to upper case.</li>
-                                <li><strong>.slice(start, end)</strong>: Extracts a part of a string.</li>
-                                <li><strong>.replace()</strong>: Replaces a specified value with another value.</li>
+                                <li><strong>DOM Manipulation</strong>: Changing HTML and CSS on the fly.</li>
+                                <li><strong>Async/Await</strong>: Handling API calls and asynchronous operations.</li>
+                                <li><strong>ES6+ Syntax</strong>: Arrow functions, destructuring, and modules.</li>
                             </ul>
-
-                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Example Code
-                            </h5>
-                            <pre><code class="language-javascript">const text = "Hello World";
-                                                                    console.log(text.length); // 11
-                                                                    console.log(text.toUpperCase()); // "HELLO WORLD"
-                                                                    let part = text.slice(0, 5); // "Hello"
-</code></pre>
+                            <pre><code class="language-javascript">document.getElementById('btn').addEventListener('click', () => {
+    console.log('Hello World');
+});</code></pre>
                         </div>
 
-                        <!-- Conditions Tab Content -->
-                        <div id="tab-conditions" class="tab-content hidden animate-fade-in">
-                            <h4 class="text-xl font-bold mb-4 font-quantico text-green-600 dark:text-green-400">
-                                Conditional Logic</h4>
-                            <p class="mb-4 text-sm leading-relaxed">Conditional statements are used to perform different
-                                actions based on different conditions.</p>
-
-                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Types</h5>
+                        <!-- Python Tab -->
+                        <div id="tab-python" class="tab-content hidden animate-fade-in">
+                            <h4 class="text-xl font-bold mb-4 font-quantico text-blue-600 dark:text-blue-400">Python</h4>
+                            <p class="mb-4 text-sm leading-relaxed">Known for its readability and massive ecosystem of libraries. Perfect for beginners and experts alike.</p>
+                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Use Cases</h5>
                             <ul class="list-disc list-inside space-y-2 mb-6 text-sm ml-2">
-                                <li><strong>if</strong>: Specifies a block of code to be executed if a condition is
-                                    true.</li>
-                                <li><strong>else</strong>: Specifies a block of code to be executed if the same
-                                    condition is false.</li>
-                                <li><strong>else if</strong>: Specifies a new condition to test, if the first condition
-                                    is false.</li>
-                                <li><strong>switch</strong>: Selects one of many blocks of code to be executed.</li>
+                                <li><strong>Data Science</strong>: Pandas, NumPy, Matplotlib.</li>
+                                <li><strong>Web Development</strong>: Django, Flask, FastAPI.</li>
+                                <li><strong>Automation</strong>: Scripting boring tasks.</li>
                             </ul>
+                            <pre><code class="language-python">def greet(name):
+    return f"Hello, {name}!"
 
-                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Example Code
-                            </h5>
-                            <pre><code class="language-javascript">let hour = 14;
-                                                                    if (hour < 12) {
-                                                                    console.log("Good morning");
-                                                                    } else if (hour < 18) {
-                                                                    console.log("Good afternoon");
-                                                                    } else {
-                                                                    console.log("Good evening");
-                                                                    }
-</code></pre>
+print(greet("Developer"))</code></pre>
                         </div>
 
-                        <!-- Loops Tab Content -->
-                        <div id="tab-loops" class="tab-content hidden animate-fade-in">
-                            <h4 class="text-xl font-bold mb-4 font-quantico text-purple-600 dark:text-purple-400">Loops
-                                & Iteration</h4>
-                            <p class="mb-4 text-sm leading-relaxed">Loops are handy, if you want to run the same code
-                                over and over again, each time with a different value.</p>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                                <div
-                                    class="bg-gray-50 dark:bg-slate-700 p-3 rounded border border-gray-200 dark:border-slate-600">
-                                    <strong class="block text-brand-blue dark:text-blue-300 mb-1">For Loop</strong>
-                                    <p class="text-xs">Loops through a block of code a number of times.</p>
-                                </div>
-                                <div
-                                    class="bg-gray-50 dark:bg-slate-700 p-3 rounded border border-gray-200 dark:border-slate-600">
-                                    <strong class="block text-brand-blue dark:text-blue-300 mb-1">While Loop</strong>
-                                    <p class="text-xs">Loops through a block of code while a specified condition is
-                                        true.</p>
-                                </div>
-                            </div>
-
-                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Example Code
-                            </h5>
-                            <pre><code class="language-javascript">const cars = ["BMW", "Volvo", "Saab", "Ford"];
-                                                                    let text = "";
-
-                                                                    for (let i = 0; i < cars.length; i++) {
-                                                                    text += cars[i] + "\n";
-                                                                    }
-</code></pre>
+                        <!-- HTML Tab -->
+                        <div id="tab-html" class="tab-content hidden animate-fade-in">
+                            <h4 class="text-xl font-bold mb-4 font-quantico text-orange-600 dark:text-orange-400">HTML5</h4>
+                            <p class="mb-4 text-sm leading-relaxed">HyperText Markup Language. It provides the structure and semantic meaning to your web content.</p>
+                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Elements</h5>
+                            <ul class="list-disc list-inside space-y-2 mb-6 text-sm ml-2">
+                                <li><strong>Semantic Tags</strong>: &lt;header&gt;, &lt;nav&gt;, &lt;article&gt;.</li>
+                                <li><strong>Forms</strong>: Input types, validation, and labels.</li>
+                                <li><strong>Multimedia</strong>: &lt;video&gt;, &lt;audio&gt;, &lt;canvas&gt;.</li>
+                            </ul>
+                            <pre><code class="language-html">&lt;article&gt;
+  &lt;h1&gt;My First Post&lt;/h1&gt;
+  &lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/article&gt;</code></pre>
                         </div>
 
-                        <!-- Functions Tab Content -->
-                        <div id="tab-functions" class="tab-content hidden animate-fade-in">
-                            <h4 class="text-xl font-bold mb-4 font-quantico text-red-600 dark:text-red-400">JavaScript
-                                Functions</h4>
-                            <p class="mb-4 text-sm leading-relaxed">A JavaScript function is a block of code designed to
-                                perform a particular task. A function is executed when "something" invokes it (calls
-                                it).</p>
-
-                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Arrow
-                                Functions (ES6)</h5>
-                            <p class="text-sm mb-4">Arrow functions allow for a shorter syntax for writing function
-                                expressions.</p>
-
-                            <h5 class="font-bold text-sm uppercase text-gray-500 dark:text-gray-400 mb-2">Example Code
-                            </h5>
-                            <pre><code class="language-javascript">// Traditional
-                                                                    function add(a, b) {
-                                                                    return a + b;
-                                                                    }
-
-                                                                    // Arrow Function
-                                                                    const multiply = (x, y) => x * y;
-
-                                                                    console.log(multiply(5, 5)); // 25
-</code></pre>
+                        <!-- CSS Tab -->
+                        <div id="tab-css" class="tab-content hidden animate-fade-in">
+                            <h4 class="text-xl font-bold mb-4 font-quantico text-indigo-600 dark:text-indigo-400">CSS3</h4>
+                            <p class="mb-4 text-sm leading-relaxed">Cascading Style Sheets. It dictates how HTML elements are displayed on screen, paper, or in other media.</p>
+                            <pre><code class="language-css">.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}</code></pre>
                         </div>
+
+                         <!-- C++ Tab -->
+                        <div id="tab-cpp" class="tab-content hidden animate-fade-in">
+                            <h4 class="text-xl font-bold mb-4 font-quantico text-blue-700 dark:text-blue-400">C++</h4>
+                            <p class="mb-4 text-sm leading-relaxed">A powerful general-purpose programming language. It is used to develop operating systems, browsers, games, and more.</p>
+                            <pre><code class="language-cpp">#include &lt;iostream&gt;
+int main() {
+    std::cout << "Hello World!";
+    return 0;
+}</code></pre>
+                        </div>
+
+                         <!-- AWS Tab -->
+                        <div id="tab-aws" class="tab-content hidden animate-fade-in">
+                            <h4 class="text-xl font-bold mb-4 font-quantico text-orange-700 dark:text-orange-500">AWS</h4>
+                            <p class="mb-4 text-sm leading-relaxed">Amazon Web Services offers reliable, scalable, and inexpensive cloud computing services.</p>
+                            <ul class="list-disc list-inside space-y-2 mb-6 text-sm ml-2">
+                                <li><strong>EC2</strong>: Virtual servers in the cloud.</li>
+                                <li><strong>S3</strong>: Scalable storage.</li>
+                                <li><strong>Lambda</strong>: Run code without thinking about servers.</li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -544,8 +575,207 @@
     </div>
 
 
-    <!-- Main Script - Defer for non-blocking load -->
+    <!-- Main Script -->
     <script src="/script.js" defer></script>
+    
+    <!-- INLINE SCRIPT: All Logic + EmailJS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. EMAILJS CONFIGURATION & LOGIC ---
+            
+            // Initialize EmailJS
+            // IMPORTANT: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key
+            (function(){
+                try {
+                    emailjs.init({
+                        publicKey: "dc0SSGDuUj1qKIP-6",
+                    });
+                } catch(e) {
+                    console.log("EmailJS not initialized yet (Add your key)");
+                }
+            })();
+
+            const form = document.getElementById('newsletter-form');
+            const msgEl = document.getElementById('newsletter-message');
+            const submitBtn = document.getElementById('newsletter-btn');
+
+            if(form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Button Loading State
+                    const originalBtnContent = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '<span>Subscribing...</span>';
+                    submitBtn.disabled = true;
+                    msgEl.style.opacity = '0';
+
+                    // Prepare params (if you need specific variable names in your template)
+                    // The 'this' keyword passes the whole form data automatically
+                    
+                    // IMPORTANT: Replace with your Service ID and Template ID
+                    const serviceID = 'service_vnr610';
+                    const templateID = 'template_subscribe';
+
+                    emailjs.sendForm(serviceID, templateID, this)
+                        .then(() => {
+                            // SUCCESS
+                            submitBtn.innerHTML = '<span>Subscribed!</span> <i data-lucide="check" class="w-4 h-4"></i>';
+                            submitBtn.classList.remove('bg-white', 'text-brand-dark');
+                            submitBtn.classList.add('bg-green-500', 'text-white');
+                            
+                            msgEl.textContent = 'Thanks for subscribing!';
+                            msgEl.classList.add('text-green-400');
+                            msgEl.classList.remove('text-red-400');
+                            msgEl.style.opacity = '1';
+                            
+                            // Re-init icon
+                            lucide.createIcons();
+                            
+                            // Reset form
+                            this.reset();
+                            
+                            // NOTE: Timeout removed so success state persists
+                        }, (err) => {
+                            // ERROR
+                            console.log('FAILED...', err);
+                            submitBtn.innerHTML = '<span>Failed</span> <i data-lucide="alert-circle" class="w-4 h-4"></i>';
+                            submitBtn.classList.remove('bg-white', 'text-brand-dark');
+                            submitBtn.classList.add('bg-red-500', 'text-white');
+                            
+                            msgEl.textContent = 'Something went wrong. Please try again.';
+                            msgEl.classList.add('text-red-400');
+                            msgEl.classList.remove('text-green-400');
+                            msgEl.style.opacity = '1';
+
+                            lucide.createIcons();
+
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalBtnContent;
+                                submitBtn.disabled = false;
+                                submitBtn.classList.add('bg-white', 'text-brand-dark');
+                                submitBtn.classList.remove('bg-red-500', 'text-white');
+                                lucide.createIcons();
+                            }, 3000);
+                        });
+                });
+            }
+
+            // --- 2. EXISTING TOGGLE TOPICS LOGIC ---
+            const toggleBtn = document.getElementById('toggle-topics-btn');
+            if(toggleBtn) {
+                toggleBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const hiddenCards = document.querySelectorAll('.topic-hidden');
+                    const isExpanded = this.getAttribute('data-expanded') === 'true';
+                    
+                    if (isExpanded) {
+                        hiddenCards.forEach(card => card.classList.add('hidden'));
+                        this.innerHTML = `Show All <i data-lucide="arrow-right" class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"></i>`;
+                        this.setAttribute('data-expanded', 'false');
+                    } else {
+                        hiddenCards.forEach(card => {
+                            card.classList.remove('hidden');
+                            anime({
+                                targets: card,
+                                opacity: [0, 1],
+                                translateY: [20, 0],
+                                duration: 400,
+                                easing: 'easeOutQuad'
+                            });
+                        });
+                        this.innerHTML = `Show Less <i data-lucide="arrow-up" class="w-4 h-4 ml-1 group-hover:-translate-y-1 transition-transform"></i>`;
+                        this.setAttribute('data-expanded', 'true');
+                    }
+                    if(typeof lucide !== 'undefined') lucide.createIcons();
+                });
+            }
+
+            // --- 3. RE-IMPLEMENTED MODAL LOGIC (So it works without external script.js) ---
+            window.openJsModal = function(tabId) {
+                const modal = document.getElementById('js-modal');
+                if(modal) {
+                    modal.classList.remove('hidden');
+                    // Lock body scroll
+                    document.body.style.overflow = 'hidden';
+                    // Switch to the requested tab
+                    switchTab(tabId);
+                }
+            };
+
+            window.closeJsModal = function() {
+                const modal = document.getElementById('js-modal');
+                if(modal) {
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = '';
+                }
+            };
+
+            window.switchTab = function(tabId) {
+                // Hide all content
+                document.querySelectorAll('.tab-content').forEach(el => {
+                    el.classList.add('hidden');
+                    el.classList.remove('block');
+                });
+                
+                // Show target content
+                const target = document.getElementById(tabId);
+                if(target) {
+                    target.classList.remove('hidden');
+                    target.classList.add('block');
+                }
+
+                // Reset all buttons
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('bg-brand-blue', 'text-white', 'shadow-sm');
+                    btn.classList.add('text-gray-600', 'dark:text-gray-300', 'hover:bg-gray-100', 'dark:hover:bg-slate-700');
+                    
+                    // Reset icons
+                    const icon = btn.querySelector('i');
+                    if(icon) {
+                        icon.classList.remove('opacity-100');
+                        icon.classList.add('opacity-0');
+                    }
+                });
+
+                // Highlight active button
+                const activeBtn = document.getElementById('btn-' + tabId);
+                if(activeBtn) {
+                    activeBtn.classList.remove('text-gray-600', 'dark:text-gray-300', 'hover:bg-gray-100', 'dark:hover:bg-slate-700');
+                    activeBtn.classList.add('bg-brand-blue', 'text-white', 'shadow-sm');
+                    
+                    const icon = activeBtn.querySelector('i');
+                    if(icon) {
+                        icon.classList.remove('opacity-0');
+                        icon.classList.add('opacity-100');
+                    }
+                }
+            };
+
+            // Mobile Menu Logic (Stub)
+            window.toggleMobileMenu = function() {
+                const menu = document.getElementById('mobile-menu');
+                if(menu) menu.classList.toggle('hidden');
+            };
+
+            // Theme Toggle Logic (Simple version)
+            const themeToggle = document.getElementById('theme-toggle');
+            if(themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    document.documentElement.classList.toggle('dark');
+                    const isDark = document.documentElement.classList.contains('dark');
+                    const icon = document.getElementById('theme-icon');
+                    if(icon) {
+                        icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+                        lucide.createIcons();
+                    }
+                });
+            }
+
+            // Init Icons
+            if(typeof lucide !== 'undefined') lucide.createIcons();
+        });
+    </script>
 </body>
 
 </html>
