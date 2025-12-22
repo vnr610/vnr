@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1: HTML Basics - VNR Journey</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="../web_dev_journey.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo">&lt;VNR /&gt;</div>
+            <!-- Link back to your main file -->
+            <a href="../index.html" class="back-btn">← Back to Timeline</a>
+        </header>
+
+        <!-- TITLE -->
+        <h1 class="page-title">HTML Basics & Structure</h1>
+        <div class="meta-info">
+            <span>Date: Dec 2025</span>
+            <span class="tag">HTML5</span>
+            <span class="tag">Day 1</span>
+        </div>
+
+        <!-- INTRO -->
+        <section>
+            <h2>What is HTML?</h2>
+            <p>HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed
+                in a web browser. It tells the browser <strong>what</strong> to show (text, images, buttons), while CSS
+                tells it <strong>how</strong> to show it.</p>
+        </section>
+
+        <!-- BOILERPLATE -->
+        <section>
+            <h2>The Boilerplate</h2>
+            <p>Every HTML file needs a standard structure. This is the first thing I learned to type out.</p>
+            <pre><code><span class="tag-name">&lt;!DOCTYPE html&gt;</span>
+<span class="tag-name">&lt;html&gt;</span>
+  <span class="tag-name">&lt;head&gt;</span>
+    <span class="tag-name">&lt;title&gt;</span>My First Page<span class="tag-name">&lt;/title&gt;</span>
+  <span class="tag-name">&lt;/head&gt;</span>
+  <span class="tag-name">&lt;body&gt;</span>
+    <span class="comment">&lt;!-- Content goes here --&gt;</span>
+    <span class="tag-name">&lt;p&gt;</span>Hello World!<span class="tag-name">&lt;/p&gt;</span>
+  <span class="tag-name">&lt;/body&gt;</span>
+<span class="tag-name">&lt;/html&gt;</span></code></pre>
+        </section>
+
+        <!-- COMMON TAGS -->
+        <section>
+            <h2>Essential Tags I Learned</h2>
+            <p>Most elements have an opening tag and a closing tag, but some are self-closing.</p>
+
+            <ul>
+                <li><strong>Text:</strong> h1-h6 (Headings), p (Paragraph), span (Inline text)</li>
+                <li><strong>Buttons:</strong> &lt;button&gt;Click me&lt;/button&gt;</li>
+                <li><strong>Links:</strong> &lt;a href="..."&gt;Link&lt;/a&gt; (Anchor tag)</li>
+                <li><strong>Images:</strong> &lt;img src="..." /&gt; (Self-closing void element)</li>
+                <li><strong>Lists:</strong> &lt;ul&gt; (Unordered) and &lt;ol&gt; (Ordered) with &lt;li&gt; items</li>
+            </ul>
+
+            <pre><code><span class="comment">&lt;!-- Button Example --&gt;</span>
+<span class="tag-name">&lt;button</span> <span class="attr">class</span>=<span class="val">"subscribe-btn"</span><span class="tag-name">&gt;</span>
+  SUBSCRIBE
+<span class="tag-name">&lt;/button&gt;</span></code></pre>
+        </section>
+
+        <!-- SEMANTICS -->
+        <section>
+            <h2>Semantic HTML</h2>
+            <p>Instead of using &lt;div&gt; for everything, modern HTML uses tags that describe their meaning.</p>
+            <ul>
+                <li><strong>&lt;header&gt;</strong> - Top of the page/section</li>
+                <li><strong>&lt;nav&gt;</strong> - Navigation links</li>
+                <li><strong>&lt;main&gt;</strong> - Dominant content</li>
+                <li><strong>&lt;footer&gt;</strong> - Bottom of the page</li>
+                <li><strong>&lt;article&gt;</strong> - Independent content (like this blog post)</li>
+            </ul>
+        </section>
+         <!-- FOOTER ADDED -->
+        <footer>
+            <p>Built by VNR 💀 using HTML, CSS & Minimal JS.</p>
+        </footer>
+
+    </div>
+  <!-- JAVASCRIPT FOR DATE -->
+    <script>
+        // Get current date
+        const now = new Date();
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        
+        // Format: Dec 22, 2025
+        document.getElementById('dynamic-date').textContent = now.toLocaleDateString('en-US', options);
+    </script>
+</body>
+
+</html>
