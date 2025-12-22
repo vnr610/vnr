@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VNR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER -->
+        <header>
+            <div class="logo">&lt;VNR/&gt;</div>
+            <nav class="social-links">
+                <!-- Replace # with your real links later -->
+                <a href="https://github.com/vnr610" target="_blank">Github</a>
+                <a href="https://x.com/vnr61055546" target="_blank">X</a>
+            </nav>
+        </header>
+
+        <!-- HERO -->
+        <section class="hero">
+            <span class="status-badge" id="days-count">Day 1</span>
+            <h1>Zero to Full Stack</h1>
+            <p>Documenting my path to becoming a web developer. Currently learning HTML & CSS with SuperSimpleDev.</p>
+        </section>
+
+        <!-- TIMELINE GRID -->
+        <h2 class="timeline-title">Project Log</h2>
+        
+        <div class="journey-grid" id="journey-grid">
+
+            <!-- DAY 1: Start -->
+            <article class="card">
+                <div class="card-header">
+                    <span class="day-tag">Day 1</span>
+                    <div class="tech-stack">
+                        <span>HTML</span>
+                    </div>
+                </div>
+                <h3>HTML Basics</h3>
+                <p>All of HTML learned. Covered structure, elements, attributes, and semantic tags.</p>
+                <a href="#" class="card-link">View Code</a>
+            </article>
+
+            <!-- TEMPLATE CARD (Copy this to add more days!) -->
+            <!-- 
+            <article class="card">
+                <div class="card-header">
+                    <span class="day-tag">Day X</span>
+                    <div class="tech-stack">
+                        <span>Tech</span>
+                    </div>
+                </div>
+                <h3>Title</h3>
+                <p>Description</p>
+                <a href="#" class="card-link">Link</a>
+            </article> 
+            -->
+
+        </div>
+
+        <!-- Load More Button -->
+        <div class="load-more-container">
+            <button id="load-more-btn" class="load-more-btn">Load More</button>
+        </div>
+
+        <footer>
+            <p>Built by VNR 💀 using HTML, CSS & Minimal JS.</p>
+        </footer>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Days Calculation
+        const startDate = new Date('2025-12-22'); // CHANGE THIS TO YOUR START DATE
+        const today = new Date();
+        const timeDiff = today - startDate;
+        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+        const dayCountElement = document.getElementById('days-count');
+        if (daysDiff > 0) {
+            dayCountElement.textContent = `Day ${daysDiff} of Learning`;
+        } else {
+            dayCountElement.textContent = "Day 1 of Learning";
+        }
+
+        // 2. Load More Logic
+        const grid = document.getElementById('journey-grid');
+        const loadBtn = document.getElementById('load-more-btn');
+        const VISIBLE_LIMIT = 6;
+        
+        // Get all cards
+        const allCards = grid.querySelectorAll('.card');
+
+        // Logic to hide extra cards initially
+        if (allCards.length > VISIBLE_LIMIT) {
+            // Show the button
+            loadBtn.style.display = 'inline-block';
+
+            // Hide cards beyond the limit
+            allCards.forEach((card, index) => {
+                if (index >= VISIBLE_LIMIT) {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Click handler for Load More
+        loadBtn.addEventListener('click', () => {
+            // Show all hidden cards
+            const hiddenCards = grid.querySelectorAll('.card.hidden');
+            hiddenCards.forEach(card => {
+                card.classList.remove('hidden');
+                // Optional: Add a little fade-in animation via JS or CSS class
+                card.style.animation = 'fadeIn 0.5s ease-in'; 
+            });
+
+            // Hide the button after loading
+            loadBtn.style.display = 'none';
+        });
+
+        console.log("Welcome to VNR Journey Site!");
+    </script>
+</body>
+</html>
