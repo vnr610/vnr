@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Day 1: HTML Basics - VNR Journey</title>
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../web_dev_journey.css">
+    <link rel="stylesheet" href="../Style/style.css">
+    <link rel="stylesheet" href="../Style/web_dev_journey.css">
 </head>
 
 <body>
@@ -91,16 +91,25 @@
     </div>
     <!-- JAVASCRIPT FOR DATE -->
     <script>
-      // Force the URL to look like /day1.html
-        // This visually removes folder paths like /Day%201/ from the address bar
-        window.history.replaceState(null, '', '/day1.html');
-
-        // Get current date
+        // 1. Get current date
         const now = new Date();
         const options = { year: 'numeric', month: 'short', day: 'numeric' };
-        
+
         // Format: Dec 22, 2025
         document.getElementById('dynamic-date').textContent = now.toLocaleDateString('en-US', options);
+
+        // 2. Calculate "Day X" Counter
+        // Make sure this matches the Start Date in your main file
+        const startDate = new Date('2025-12-22');
+        const timeDiff = now - startDate;
+
+        // Calculate difference in days
+        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+        // Add 1 so the first day is "Day 1" (Diff 0 = Day 1)
+        const currentDay = daysDiff >= 0 ? daysDiff + 1 : 1;
+
+        document.getElementById('day-counter').textContent = `Day ${currentDay}`;
     </script>
 </body>
 
