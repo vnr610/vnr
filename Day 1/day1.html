@@ -88,6 +88,15 @@
         </footer>
 
     </div>
+    <!-- JAVASCRIPT FOR DATE -->
+    <script>
+        // Get current date
+        const now = new Date();
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+
+        // Format: Dec 22, 2025
+        document.getElementById('dynamic-date').textContent = now.toLocaleDateString('en-US', options);
+    </script>
 </body>
 
 </html>
