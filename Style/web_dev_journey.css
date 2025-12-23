@@ -166,3 +166,12 @@
             border-top: 1px solid #333;
             padding-top: 20px;
         }
+
+        /* --- PRODUCT CARD --- */
+        .product {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent-primary);
+        }

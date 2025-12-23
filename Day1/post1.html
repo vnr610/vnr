@@ -2,115 +2,154 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Day 1: HTML Basics - VNR Journey</title>
-    <link rel="stylesheet" href="../Style/style.css">
-    <link rel="stylesheet" href="../Style/web_dev_journey.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 1: HTML Basics - VNR Journey</title>
+  <link rel="stylesheet" href="../Style/style.css">
+  <link rel="stylesheet" href="../Style/web_dev_journey.css">
 </head>
 
 <body>
-    <div class="container">
-        <!-- HEADER -->
-        <header>
-            <div class="logo">&lt;VNR /&gt;</div>
-            <!-- Link back to your main file -->
-            <a href="../index.html" class="back-btn">← Back to Timeline</a>
-        </header>
+  <div class="container">
+    <!-- HEADER -->
+    <header>
+      <div class="logo">&lt;VNR /&gt;</div>
+      <!-- Link back to your main file -->
+      <a href="../index.html" class="back-btn">← Back to Timeline</a>
+    </header>
 
-        <!-- TITLE -->
-        <h1 class="page-title">HTML Basics & Structure</h1>
-        <div class="meta-info">
-            <!-- Added ID for JS targeting -->
-            <span>Date: <span id="dynamic-date">...</span></span>
-            <span class="tag">HTML5</span>
-            <span class="tag">Day 1</span>
-        </div>
+    <!-- TITLE -->
+    <h1 class="page-title">HTML Basics & Structure</h1>
+    <div class="meta-info">
+      <!-- Added ID for JS targeting -->
+      <span>Date: <span>22 DEC, 2025</span></span>
+      <span class="tag">HTML5</span>
+      <span class="tag">Day 1</span>
+    </div>
 
-        <!-- INTRO -->
-        <section>
-            <h2>What is HTML?</h2>
-            <p>HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed
-                in a web browser. It tells the browser <strong>what</strong> to show (text, images, buttons), while CSS
-                tells it <strong>how</strong> to show it.</p>
-        </section>
+    <!-- INTRO -->
+    <section>
+      <h2>What is HTML?</h2>
+      <p>HTML (HyperText Markup Language) is the standard markup language for documents designed to be displayed
+        in a web browser. It tells the browser <strong>what</strong> to show (text, images, buttons), while CSS
+        tells it <strong>how</strong> to show it.</p>
+    </section>
 
-        <!-- BOILERPLATE -->
-        <section>
-            <h2>The Boilerplate</h2>
-            <p>Every HTML file needs a standard structure. This is the first thing I learned to type out.</p>
-            <pre><code><span class="tag-name">&lt;!DOCTYPE html&gt;</span>
-<span class="tag-name">&lt;html&gt;</span>
-  <span class="tag-name">&lt;head&gt;</span>
-    <span class="tag-name">&lt;title&gt;</span>My First Page<span class="tag-name">&lt;/title&gt;</span>
-  <span class="tag-name">&lt;/head&gt;</span>
-  <span class="tag-name">&lt;body&gt;</span>
-    <span class="comment">&lt;!-- Content goes here --&gt;</span>
-    <span class="tag-name">&lt;p&gt;</span>Hello World!<span class="tag-name">&lt;/p&gt;</span>
-  <span class="tag-name">&lt;/body&gt;</span>
-<span class="tag-name">&lt;/html&gt;</span></code></pre>
-        </section>
+    <!-- BOILERPLATE -->
+    <section>
+      <h2>The Boilerplate</h2>
+      <p>Every HTML file needs a standard structure. This is the first thing I learned to type out.</p>
+      <pre><code><span class="tag-name">&lt;!DOCTYPE html&gt;</span>
+                <span class="tag-name">&lt;html&gt;</span>
+                <span class="tag-name">&lt;head&gt;</span>
+                    <span class="tag-name">&lt;title&gt;</span>My First Page<span class="tag-name">&lt;/title&gt;</span>
+                <span class="tag-name">&lt;/head&gt;</span>
+                <span class="tag-name">&lt;body&gt;</span>
+                    <span class="comment">&lt;!-- Content goes here --&gt;</span>
+                    <span class="tag-name">&lt;p&gt;</span>Hello World!<span class="tag-name">&lt;/p&gt;</span>
+                <span class="tag-name">&lt;/body&gt;</span>
+                <span class="tag-name">&lt;/html&gt;</span></code></pre>
+    </section>
 
-        <!-- COMMON TAGS -->
-        <section>
-            <h2>Essential Tags I Learned</h2>
-            <p>Most elements have an opening tag and a closing tag, but some are self-closing.</p>
+    <!-- COMMON TAGS -->
+    <section>
+      <h2>Essential Tags I Learned</h2>
+      <p>Most elements have an opening tag and a closing tag, but some are self-closing.</p>
 
-            <ul>
-                <li><strong>Text:</strong> h1-h6 (Headings), p (Paragraph), span (Inline text)</li>
-                <li><strong>Buttons:</strong> &lt;button&gt;Click me&lt;/button&gt;</li>
-                <li><strong>Links:</strong> &lt;a href="..."&gt;Link&lt;/a&gt; (Anchor tag)</li>
-                <li><strong>Images:</strong> &lt;img src="..." /&gt; (Self-closing void element)</li>
-                <li><strong>Lists:</strong> &lt;ul&gt; (Unordered) and &lt;ol&gt; (Ordered) with &lt;li&gt; items</li>
-            </ul>
+      <ul>
+        <li><strong>Text:</strong> h1-h6 (Headings), p (Paragraph), span (Inline text)</li>
+        <li><strong>Buttons:</strong> &lt;button&gt;Click me&lt;/button&gt;</li>
+        <li><strong>Links:</strong> &lt;a href="..."&gt;Link&lt;/a&gt; (Anchor tag)</li>
+        <li><strong>Images:</strong> &lt;img src="..." /&gt; (Self-closing void element)</li>
+        <li><strong>Lists:</strong> &lt;ul&gt; (Unordered) and &lt;ol&gt; (Ordered) with &lt;li&gt; items</li>
+      </ul>
 
-            <pre><code><span class="comment">&lt;!-- Button Example --&gt;</span>
+      <pre><code><span class="comment">&lt;!-- Button Example --&gt;</span>
 <span class="tag-name">&lt;button</span> <span class="attr">class</span>=<span class="val">"subscribe-btn"</span><span class="tag-name">&gt;</span>
   SUBSCRIBE
 <span class="tag-name">&lt;/button&gt;</span></code></pre>
-        </section>
+    </section>
 
-        <!-- SEMANTICS -->
-        <section>
-            <h2>Semantic HTML</h2>
-            <p>Instead of using &lt;div&gt; for everything, modern HTML uses tags that describe their meaning.</p>
-            <ul>
-                <li><strong>&lt;header&gt;</strong> - Top of the page/section</li>
-                <li><strong>&lt;nav&gt;</strong> - Navigation links</li>
-                <li><strong>&lt;main&gt;</strong> - Dominant content</li>
-                <li><strong>&lt;footer&gt;</strong> - Bottom of the page</li>
-                <li><strong>&lt;article&gt;</strong> - Independent content (like this blog post)</li>
-            </ul>
-        </section>
+    <!-- SEMANTICS -->
+    <section>
+      <h2>Semantic HTML</h2>
+      <p>Instead of using &lt;div&gt; for everything, modern HTML uses tags that describe their meaning.</p>
+      <ul>
+        <li><strong>&lt;header&gt;</strong> - Top of the page/section</li>
+        <li><strong>&lt;nav&gt;</strong> - Navigation links</li>
+        <li><strong>&lt;main&gt;</strong> - Dominant content</li>
+        <li><strong>&lt;footer&gt;</strong> - Bottom of the page</li>
+        <li><strong>&lt;article&gt;</strong> - Independent content (like this blog post)</li>
+      </ul>
+    </section>
 
-        <!-- FOOTER ADDED -->
-        <footer>
-            <p>Built by VNR 💀 using HTML, CSS & Minimal JS.</p>
-        </footer>
+    <!-- Others-->
+    <section>
+      <h2>Lesson 1 Exercises - HTML Basics</h2>
+      <ul>
+        <li>Create a button with the text "Click"</li>
+        <li>Create 2 buttons. 1 with your name and 1 with your favorite drink</li>
+        <li>Create a paragraph with the text "Hello World!"</li>
+        <li>Create a paragraph below the previous paragraph and write something you did today</li>
+        <li>Create a link to your favorite website (or a similar website of your country)</li>
+        <li>Make the link from the previous exercise open in new tab</li>
+        <li>An amazon prduct link with name, price and buttons using html only.</li>
 
-    </div>
-    <!-- JAVASCRIPT FOR DATE -->
-    <script>
-        // 1. Get current date
-        const now = new Date();
-        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      </ul>
+      <button
+        style="padding: 10px; width: auto; border-radius: 10px; border: 2px solid var(--accent-primary); margin: 5px;">M
+        Thapa </button>
+      <button
+        style="padding: 10px; width: auto; border-radius: 10px; border: 2px solid var(--accent-primary); margin: 0px 5px;">Milk</button>
+      <button
+        style="padding: 10px; width: auto; border-radius: 10px; border: 2px solid var(--accent-primary); margin: 5px;">Click</button>
+      <br>
+      <p style="background-color: white; color:black; padding: 10px; border-radius: 10px;">Hello World!</p>
+      <p style="background-color: white; color:black; padding: 10px; border-radius: 10px;">Today I learned about HTML
+        tags and their meanings.</p>
+      <a href="https://dofe.gov.np" target="_blank">DOFE site of Nepal</a><br>
+      <a href="https://www.amazon.in/">Amazon</a>
+      <br>
+      <a href="https://www.amazon.in/" target="_blank">Amazon (New Tab)</a>
+      <br>
+      <a href="https://www.amazon.in/" target="_blank">Back to Amazon</a>
+      <div class="product">
+        <h3>Nvidia RTX 5070</h3>
+        <p style="color: var(--accent-primary); font-size: 24px;">Price: $799.99</p>
+        <p style="color: var(--text-secondary); font-size: 20px;">Free delivery by tomorrow</p>
+        <button
+          style="padding: 10px; width: auto; border-radius: 10px; border: 2px solid var(--accent-primary); margin: 5px;">Add
+          to Cart</button>
+        <button
+          style="padding: 10px; width: auto; border-radius: 10px; border: 2px solid var(--accent-primary); margin: 0px 5px;">Buy
+          Now</button>
+      </div>
+    </section>
 
-        // Format: Dec 22, 2025
-        document.getElementById('dynamic-date').textContent = now.toLocaleDateString('en-US', options);
+    <!-- FOOTER ADDED -->
+    <footer>
+      <p>Built by VNR 💀 using HTML, CSS & Minimal JS.</p>
+    </footer>
 
-        // 2. Calculate "Day X" Counter
-        // Make sure this matches the Start Date in your main file
-        const startDate = new Date('2025-12-22');
-        const timeDiff = now - startDate;
+  </div>
+  <!-- JAVASCRIPT FOR DATE -->
+  <script>
+    // Format: Dec 22, 2025
+    document.getElementById('dynamic-date').textContent = now.toLocaleDateString('en-US', options);
 
-        // Calculate difference in days
-        const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    // 2. Calculate "Day X" Counter
+    // Make sure this matches the Start Date in your main file
+    const startDate = new Date('2025-12-22');
+    const timeDiff = now - startDate;
 
-        // Add 1 so the first day is "Day 1" (Diff 0 = Day 1)
-        const currentDay = daysDiff >= 0 ? daysDiff + 1 : 1;
+    // Calculate difference in days
+    const daysDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
-        document.getElementById('day-counter').textContent = `Day ${currentDay}`;
-    </script>
+    // Add 1 so the first day is "Day 1" (Diff 0 = Day 1)
+    const currentDay = daysDiff >= 0 ? daysDiff + 1 : 1;
+
+    document.getElementById('day-counter').textContent = `Day ${currentDay}`;
+  </script>
 </body>
 
 </html>
