@@ -1,11 +1,104 @@
-<h1>Coming Soon....</h1>
-<style>
-    h1{
-        text-align: center;
-        font-size: 3em;
-        color: #333;
-        margin-top: 20px;
-        font-weight: bold;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-</style>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 2: CSS Basics - VNR Journey</title>
+  <!-- Keeping your folder structure links -->
+  <link rel="stylesheet" href="../Style/style.css">
+  <link rel="stylesheet" href="../Style/web_dev_journey.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- HEADER -->
+    <header>
+      <div class="logo">&lt;VNR /&gt;</div>
+      <!-- Link back to your main file -->
+      <a href="../index.html" class="back-btn">← Back to Timeline</a>
+    </header>
+
+    <!-- TITLE -->
+    <h1 class="page-title">CSS Basics & Selectors</h1>
+    <div class="meta-info">
+      <!-- Dynamic Date Span -->
+      <span>Date: <span id="dynamic-date">...</span></span>
+      <span class="tag">CSS3</span>
+      <span class="tag">Day 2</span>
+    </div>
+
+    <!-- INTRO -->
+    <section>
+      <h2>What is CSS?</h2>
+      <p>CSS (Cascading Style Sheets) is what makes the web look good. Without it, everything is just plain text and ugly buttons (like the default HTML). CSS handles colors, layouts, fonts, and animations.</p>
+    </section>
+
+    <!-- SYNTAX -->
+    <section>
+      <h2>The Syntax</h2>
+      <p>I learned that CSS rules consist of a <strong>selector</strong> and a <strong>declaration block</strong>.</p>
+      <pre><code><span class="tag-name">p</span> {
+  <span class="attr">color</span>: <span class="val">red</span>;
+  <span class="attr">font-size</span>: <span class="val">16px</span>;
+}</code></pre>
+    </section>
+
+    <!-- SELECTORS -->
+    <section>
+      <h2>Selectors: Class vs ID</h2>
+      <p>The most important thing I learned today is how to target elements.</p>
+      <ul>
+        <li><strong>Element Selector (<code>p</code>, <code>button</code>):</strong> Targets all elements of that type. Good for defaults.</li>
+        <li><strong>Class Selector (<code>.btn</code>):</strong> Targets elements with <code>class="btn"</code>. <em>This is what we use 90% of the time!</em></li>
+        <li><strong>ID Selector (<code>#header</code>):</strong> Targets one specific element. High specificity (hard to override).</li>
+      </ul>
+
+      <pre><code><span class="comment">/* Targeting a class */</span>
+<span class="tag-name">.subscribe-button</span> {
+  <span class="attr">background-color</span>: <span class="val">#cc0000</span>;
+  <span class="attr">color</span>: <span class="val">white</span>;
+  <span class="attr">border</span>: <span class="val">none</span>;
+}</code></pre>
+    </section>
+
+    <!-- COLORS -->
+    <section>
+      <h2>Colors & Backgrounds</h2>
+      <p>We can use names (<code>red</code>), RGB values (<code>rgb(255, 0, 0)</code>), or Hex codes (<code>#ff0000</code>). Hex codes give us the specific shades we want, like the "Amazon Orange" or "YouTube Red".</p>
+    </section>
+
+    <!-- EXERCISES -->
+    <section>
+      <h2>Lesson 2 Exercises - Styling</h2>
+      <ul>
+        <li>Create a "Subscribe" button with a red background and white text.</li>
+        <li>Create a "Join" button with a white background and blue border.</li>
+        <li>Round the corners of the buttons using <code>border-radius</code>.</li>
+        <li>Change the cursor to a pointer when hovering over buttons.</li>
+      </ul>
+
+      <div style="margin-top: 20px; padding: 20px; background: #fff; border-radius: 8px;">
+        <!-- Exercise output visualization -->
+        <button style="background-color: #cc0000; color: white; padding: 10px 16px; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px; font-weight: bold;">SUBSCRIBE</button>
+        
+        <button style="background-color: white; color: #065fd4; padding: 9px 15px; border: 1px solid #065fd4; border-radius: 4px; cursor: pointer; font-weight: bold;">JOIN</button>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>Built by VNR 💀 using HTML, CSS & Minimal JS.</p>
+    </footer>
+
+  </div>
+
+  <!-- JAVASCRIPT FOR DATE -->
+  <script>
+    const now = new Date();
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
+    document.getElementById('dynamic-date').textContent = now.toLocaleDateString('en-US', options);
+  </script>
+</body>
+
+</html>
