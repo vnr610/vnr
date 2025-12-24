@@ -55,7 +55,6 @@
     <section>
       <h2>Essential Tags I Learned</h2>
       <p>Most elements have an opening tag and a closing tag, but some are self-closing.</p>
-
       <ul>
         <li><strong>Text:</strong> h1-h6 (Headings), p (Paragraph), span (Inline text)</li>
         <li><strong>Buttons:</strong> &lt;button&gt;Click me&lt;/button&gt;</li>
@@ -68,6 +67,40 @@
 <span class="tag-name">&lt;button</span> <span class="attr">class</span>=<span class="val">"subscribe-btn"</span><span class="tag-name">&gt;</span>
   SUBSCRIBE
 <span class="tag-name">&lt;/button&gt;</span></code></pre>
+    </section>
+
+    <!-- Elements -->
+    <section>
+      <h2>Elements</h2>
+      <p>HTML elements are the building blocks of a web page. They are defined by tags, which are enclosed in angle
+        brackets (&lt; and &gt;). Each element has a specific purpose and can contain other elements or text.</p>
+      <p>Our page title is a heading, level one, for which we use the &lt;h1&gt; tag. The actual title, "Machine
+        Learning Workshop", is the content of our element. The content goes between the open and closing tags. The
+        entire thing the opening tag, closing tag, and the content is the element.</p>
+      <img style="width: 100%;"
+        src="https://web.dev/static/learn/html/overview/image/the-tags-content-make-10a59ba9efd26_856.png" alt="">
+      <p> The closing tag is the same as the opening tag, but with a forward slash before the tag name. It indicates
+        where the element ends.</p>
+      <p>Elements and tags aren't the same thing. A tag is just a way to define an element. It's like a label that tells
+        the browser what to do with the content inside it. The content inside the tags is what we call the element's
+        "children."</p>
+      <h3>There are two types of elements: Non-replaced & replaced elements.
+      </h3>
+
+      <p style="margin-bottom: 2px;"><strong>Non-replaced elements:</strong>
+      </p>
+      <p>The paragraph, header are all non-replaced. Non-replaced elements have opening and (sometimes optional) closing tags that surround them and may include text and other tags as sub-elements. These enclosing tags can turn a phrase or image into a hyperlink, can make a sentence into a header, can give emphasis to words, and so on.</p>
+    
+        <p style="margin-bottom: 2px;"><strong>Replaced and void elements: </strong></p>
+        <p style="margin-top: 2px;">Replaced elements are ones that the browser displays something else instead of the element itself. For example, the &lt;img&gt; tag
+        displays an image, and the &lt;input&gt; tag displays a form field.</p>
+        <p>Some elements are void elements, which means they don't have a closing tag. They are self-closing and don't contain any content. For example, the &lt;img&gt; tag is a void element.</p>
+      <pre style="margin-bottom: 5px;"><code><span class="comment">&lt;!-- Example --&gt;</span>
+<span class="tag-name">&lt;img</span> <span class="attr">type</span>=<span class="val">"range"</span><span class="tag-name">&gt;</span>
+<span class="tag-name">&lt;img</span> <span class="attr">src</span>=<span class="val">"swithc.svg"</span> <span class="attr">alt</span>=<span class="val">"light switch"</span><span class="tag-name">&gt;</span>
+</code></pre>
+      <p style="margin-bottom: 0px;" margin-top="10px;">Out of above HTML:</p>
+      <img style="width: 30%;" src="https://machinelearningworkshop.com/svg/switch2.svg" alt=""> 
     </section>
 
     <!-- SEMANTICS -->
